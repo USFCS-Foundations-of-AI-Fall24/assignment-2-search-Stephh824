@@ -50,7 +50,7 @@ class map_state() :
     # 		enqueue
 
 
-def mission_complete(state) :
+def mission_compl(state) :
     return state.is_goal()
 
 # heuristic_fn is either h1 or sld
@@ -70,7 +70,7 @@ def a_star(start_state, heuristic_fn, goal_test, use_closed_list=True) :
 
         next_state = search_queue.get()
         if goal_test(next_state) :
-            print("Goal found")
+            # print("Goal found")
             # print(next_state)
             return next_state, total_states
         else :
@@ -114,11 +114,4 @@ def read_mars_graph(filename):
                 mars_graph.add_edge(edge1)
     return mars_graph
 
-if __name__ == '__main__' :
-    graph = read_mars_graph('MarsMap')
-    map = map_state("8,8", graph)
-    result, states = a_star(map, sld, mission_complete)
-    print("A* Search\nResult: %r\nTotal States: %d\n" % (result, states))
-    result1, states1 = a_star(map, h1, mission_complete)
-    print("Uniform Cost Search\nResult: %r\nTotal States: %d\n" % (result1, states1))
 
